@@ -32,13 +32,16 @@ export class Payment {
  
   _status: bool;
   _payMount: u64;
+  _count: u64;
   constructor(
     status: bool,
-    payMount:u64
+    payMount:u64,
+    count:u64,
 
   ) {
     this._status = status;
     this._payMount=payMount;
+    this._count=count;
   }
 
 }
