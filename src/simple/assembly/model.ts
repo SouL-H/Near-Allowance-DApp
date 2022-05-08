@@ -1,6 +1,4 @@
 import { PersistentUnorderedMap, PersistentVector, context } from "near-sdk-as";
-
-export const students = new PersistentUnorderedMap<u32, Student>("s");
 export const payStatus = new PersistentUnorderedMap<string, Payment>("pay");
 export let studentInfo = new PersistentVector<Student>("info");
 export const day30= 2592000000000000
@@ -8,22 +6,24 @@ export const day30= 2592000000000000
 export class Student {
  
   _name: string;
+  _wallet:string;
   _mount: i32;
-
   _count: u32;
-  _time:u64;
+  _payCheck: Map<String, Payment[]>;
 
   constructor(
     name: string,
+    wallet:string,
     mount: i32,
     count:u32,
-    time:u64,
+    payCheck: Map<String, Payment[]>,
 
   ) {
     this._name = name;
+    this._wallet = wallet;
     this._mount = mount;
     this._count=count;
-    this._time = time;
+    this._payCheck=payCheck;
   }
 
 }
@@ -31,19 +31,14 @@ export class Student {
 export class Payment {
  
   _status: bool;
-  _mount: i32;
-
-  _count: u32;
-  _time:u64;
-
+  _payMount: u64;
   constructor(
     status: bool,
+    payMount:u64
 
   ) {
     this._status = status;
-    this._mount = mount;
-    this._count=count;
-    this._time = time;
+    this._payMount=payMount;
   }
 
 }

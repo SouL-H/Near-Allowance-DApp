@@ -1,5 +1,5 @@
 import { storage, Context, context, logging } from "near-sdk-as"
-import { day30, Student, studentInfo } from "./model";
+import { day30, Payment, Student, studentInfo} from "./model";
 
 
 // return the string 'hello world'
@@ -9,16 +9,19 @@ export function helloWorld(): string {
 
  export function addStudent(
       name:string,
+      wallet:string,
       mount:i32,
       count:u32, 
-      ):Array<u64>{
-        var time = context.blockTimestamp
-        const result = new Array<u64>(mount)
-        for (let i = 0; i < mount; i++) {
-            result[i] = time+day30*(i+1);
+      ):void{
+        const time = context.blockTimestamp
+        const stArray = new Array<Payment>(mount);
+        const stMap = new Map<string, Payment[]>();
+        for(let i=0;i<mount;i++){
+          stArray[i] = new Payment(false,time+day30*(i+1));
         }
-      studentInfo.push(new Student(name,mount,count,context.blockTimestamp))
-      return result
+        stMap.set(wallet, stArray);
+        studentInfo.push(new Student(name,wallet,mount,count,stMap));
+        logging.log("Isim "+name + " basariyla eklendi.");
 }
 
 export function getInfo():Array<Student>{
