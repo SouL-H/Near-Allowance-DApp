@@ -1,4 +1,4 @@
-import { storage, Context, context, logging } from "near-sdk-as"
+import { storage, Context, context, logging,math, u128 } from "near-sdk-as"
 import { day30, Payment, payStatus, Student, studentInfo} from "./model";
 
 
@@ -16,7 +16,7 @@ export function helloWorld(): string {
         const time = context.blockTimestamp
         const stArray = new Array<Payment>(mount);
         const stMap = new Map<string, Payment[]>();
-        const pay = count/mount;
+        const pay = u128.div(u128.from(mount), u128.from(count));
         for(let i=0;i<mount;i++){
           stArray[i] = new Payment(false,time+day30*(i+1),pay);
         }
