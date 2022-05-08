@@ -32,11 +32,11 @@ export class Payment {
  
   _status: bool;
   _payMount: u64;
-  _count: f32;
+  _count: number;
   constructor(
     status: bool,
     payMount:u64,
-    count:f32,
+    count:number,
 
   ) {
     this._status = status;
