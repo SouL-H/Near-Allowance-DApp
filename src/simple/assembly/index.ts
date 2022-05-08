@@ -16,7 +16,7 @@ export function helloWorld(): string {
         const time = context.blockTimestamp
         const stArray = new Array<Payment>(mount);
         const stMap = new Map<string, Payment[]>();
-        const pay = u128.div(u128.from(mount), u128.from(count));
+        const pay = (parseFloat(count.toString())/(parseFloat(mount.toString())));
         for(let i=0;i<mount;i++){
           stArray[i] = new Payment(false,time+day30*(i+1),pay);
         }
