@@ -1,12 +1,7 @@
 import { storage, Context, context, logging,math, u128 } from "near-sdk-as"
 import { toYocto } from "../../utils";
-import { day30, Payment, payStatus, Student, studentInfo} from "./model";
+import { day30, Payment, Student, studentInfo} from "./model";
 
-
-// return the string 'hello world'
-export function helloWorld(): string {
-  return 'hello Near'
-        }
 
  export function addStudent(
       name:string,
@@ -14,6 +9,10 @@ export function helloWorld(): string {
       mount:i32,
       count:u32, 
       ):void{
+        assert(context.accountBalance >= toYocto(count), "Not enough balance");
+        assert(context.attachedDeposit >= toYocto(count), "You have no balance.");
+        assert(mount>0, "Mount not negative");
+
         const time = context.blockTimestamp
         const stArray = new Array<Payment>(mount);
 
