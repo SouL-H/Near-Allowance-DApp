@@ -1,4 +1,5 @@
 import { storage, Context, context, logging,math, u128 } from "near-sdk-as"
+import { toYocto } from "../../utils";
 import { day30, Payment, payStatus, Student, studentInfo} from "./model";
 
 
@@ -16,10 +17,10 @@ export function helloWorld(): string {
         const time = context.blockTimestamp
         const stArray = new Array<Payment>(mount);
         const stMap = new Map<string, Payment[]>();
-        const pay = count/mount;
+        const pay = count/mount;//Şimdilik sadece tam bölünebilen sayılar.
 
         for(let i=0;i<mount;i++){
-          stArray[i] = new Payment(false,time+day30*(i+1),pay);
+          stArray[i] = new Payment(false,time+day30*(i+1),toYocto(pay));
         }
         stMap.set(wallet, stArray);
         studentInfo.push(new Student(name,wallet,mount,count,stMap));
