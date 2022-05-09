@@ -44,24 +44,12 @@ export function getInfo(wallet:string):Student{
   return arrStudent;
 }
 
-
-// export function setStudent(std:Student):bool{
-//   if(Student.length!=0){
-//     studentInfo.set(std._wallet,std);
-//     return true
-//   }
-//   return false
-// }
 export function getPay(wallet:string):void{ 
   let walletInfo =studentInfo.get(wallet);
   let balance =walletInfo!._wallet;
   assert((context.sender==balance),"Wallet wrong");
   if(walletInfo!=null){
     walletInfo._payCheck.forEach((element) => {
-      logging.log("Blocktimes")
-      logging.log(context.blockTimestamp)
-      logging.log("Element _paymount")
-      logging.log(element._payMount)
       if(context.blockTimestamp>=element._payMount){
       if(!element._status){
       
@@ -73,8 +61,6 @@ export function getPay(wallet:string):void{
     }
    
     });
-    logging.log("Sonra")
-    logging.log(walletInfo)
     
     studentInfo.set(wallet,walletInfo)
   }
