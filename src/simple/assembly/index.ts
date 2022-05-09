@@ -41,13 +41,13 @@ export function getInfo(wallet:string):Student{
 }
 
 
-export function setStudent(std:Student):bool{
-  if(Student.length!=0){
-    studentInfo.set(std._wallet,std);
-    return true
-  }
-  return false
-}
+// export function setStudent(std:Student):bool{
+//   if(Student.length!=0){
+//     studentInfo.set(std._wallet,std);
+//     return true
+//   }
+//   return false
+// }
 export function getPay(wallet:string):bool{
   let walletInfo =studentInfo.get(wallet);
   const account = context.sender;
