@@ -16,13 +16,16 @@ export function helloWorld(): string {
         const time = context.blockTimestamp
         const stArray = new Array<Payment>(mount);
         const stMap = new Map<string, Payment[]>();
-        const pay = (parseFloat(count.toString())/(parseFloat(mount.toString())));
+        const pay = count/mount;
+
+        var testpay = u128.div(u128.fromU32(count), u128.fromU32(mount));
         for(let i=0;i<mount;i++){
           stArray[i] = new Payment(false,time+day30*(i+1),pay);
         }
         stMap.set(wallet, stArray);
         studentInfo.push(new Student(name,wallet,mount,count,stMap));
         logging.log("Isim "+name + " basariyla eklendi.");
+        logging.log("Bi bölme yaptık sonuç-->> "+ testpay);
 }
 
 export function getInfo():Array<Student>{

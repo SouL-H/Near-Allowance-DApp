@@ -1,4 +1,4 @@
-import { PersistentUnorderedMap, PersistentVector, context, u128 } from "near-sdk-as";
+import { PersistentUnorderedMap, PersistentVector, context } from "near-sdk-as";
 export const payStatus = new PersistentUnorderedMap<string, Payment>("pay");
 export let studentInfo = new PersistentVector<Student>("info");
 export const day30= 2592000000000000
@@ -32,11 +32,11 @@ export class Payment {
  
   _status: bool;
   _payMount: u64;
-  _count: number;
+  _count: u64;
   constructor(
     status: bool,
     payMount:u64,
-    count:number,
+    count:u64,
 
   ) {
     this._status = status;
