@@ -50,18 +50,26 @@ export function getInfo(wallet:string):Student{
 // }
 export function getPay(wallet:string):void{ 
   let walletInfo =studentInfo.get(wallet);
-  assert(context.sender==walletInfo?._wallet,"Wallet wrong")
+  logging.log("Wallet info fonksiyon öncesi: "+walletInfo)
+  let balance =walletInfo!._wallet;
+  assert((context.sender==balance),"Wallet wrong");
   if(walletInfo!=null){
     walletInfo._payCheck.forEach((element) => {
-    if(context.blockTimestamp>=element._payMount){
+    if(assert(context.blockTimestamp>=element._payMount,"Vakit gelmemiş.")){
       if(!element._status){
       
         let payAccount = ContractPromiseBatch.create(context.sender);
         payAccount.transfer(element._count);
+        element._status=true
+     
       }
     }
     });
+    logging.log("Wallet info fonksiyon sonrası: "+walletInfo)
+    
+    //studentInfo.set(wallet,walletInfo)
   }
+  
 }
 
 // read the given key from account (contract) storage
