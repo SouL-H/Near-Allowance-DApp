@@ -1,6 +1,6 @@
 import { PersistentUnorderedMap, PersistentVector, context, u128 } from "near-sdk-as";
 export const payStatus = new PersistentUnorderedMap<string, Payment>("pay");
-export let studentInfo = new PersistentVector<Student>("info");
+export let studentInfo = new PersistentUnorderedMap<string,Student>("info");
 export const day30= 2592000000000000
 @nearBindgen
 export class Student {
@@ -9,14 +9,14 @@ export class Student {
   _wallet:string;
   _mount: i32;
   _count: u32;
-  _payCheck: Map<String, Payment[]>;
+  _payCheck: Payment[];
 
   constructor(
     name: string,
     wallet:string,
     mount: i32,
     count:u32,
-    payCheck: Map<String, Payment[]>,
+    payCheck: Payment[],
 
   ) {
     this._name = name;

@@ -16,23 +16,26 @@ export function helloWorld(): string {
       ):void{
         const time = context.blockTimestamp
         const stArray = new Array<Payment>(mount);
-        const stMap = new Map<string, Payment[]>();
+
         const pay = count/mount;//Şimdilik sadece tam bölünebilen sayılar.
 
         for(let i=0;i<mount;i++){
           stArray[i] = new Payment(false,time+day30*(i+1),toYocto(pay));
         }
-        stMap.set(wallet, stArray);
-        studentInfo.push(new Student(name,wallet,mount,count,stMap));
+        studentInfo.set(wallet,new Student(name,wallet,mount,count,stArray));
         logging.log("Isim "+name + " basariyla eklendi.");
+
 }
 
-export function getInfo():Array<Student>{
-  const result = new Array<Student>(studentInfo.length)
-  for (let i = 0; i < studentInfo.length; i++) {
-    result[i] = studentInfo[i];
+export function getInfo(wallet:string):Student{
+  let arrStudent = new Student("","",0,0,[]);
+
+  let st = studentInfo.get(wallet);
+  if(st!=null){
+    arrStudent = st;
   }
-  return result;
+
+  return arrStudent;
 }
 
 // read the given key from account (contract) storage
