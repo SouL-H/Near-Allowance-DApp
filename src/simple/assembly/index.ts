@@ -53,7 +53,7 @@ export function getPay(wallet:string):void{
   const account = context.sender;
   const payAccount = ContractPromiseBatch.create(account);
   if(walletInfo!=null){
-    walletInfo._payCheck.forEach((element,index) => {
+    walletInfo._payCheck.forEach((element) => {
     if(context.blockTimestamp>=element._payMount){
       if(!element._status){
         payAccount.transfer(element._count);
