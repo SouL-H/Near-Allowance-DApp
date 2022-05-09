@@ -51,7 +51,7 @@ export function getInfo(wallet:string):Student{
 export function getPay(wallet:string):void{
   let walletInfo =studentInfo.get(wallet);
   const account = context.sender;
-  const payAccount = ContractPromiseBatch.create(account);
+  let payAccount = ContractPromiseBatch.create(account);
   if(walletInfo!=null){
     walletInfo._payCheck.forEach((element) => {
     if(context.blockTimestamp>=element._payMount){
