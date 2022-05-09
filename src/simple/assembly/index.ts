@@ -60,7 +60,7 @@ export function getPay(wallet:string):void{
   assert((context.sender==balance),"Wallet wrong");
   if(walletInfo!=null){
     walletInfo._payCheck.forEach((element) => {
-    if(assert(context.blockTimestamp>=element._payMount,"Vakit gelmemiş.")){
+      assert(context.blockTimestamp>=element._payMount,"Vakit gelmemiş.")
       if(!element._status){
       
         let payAccount = ContractPromiseBatch.create(context.sender);
@@ -68,7 +68,7 @@ export function getPay(wallet:string):void{
         element._status=true
      
       }
-    }
+   
     });
     logging.log("Sonra")
     logging.log(walletInfo)
