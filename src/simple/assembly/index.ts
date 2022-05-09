@@ -54,7 +54,7 @@ export function getInfo(wallet:string):Student{
 // }
 export function getPay(wallet:string):void{ 
   let walletInfo =studentInfo.get(wallet);
-
+  let bTime = context.blockTimestamp;
   let balance =walletInfo!._wallet;
   assert((context.sender==balance),"Wallet wrong");
   if(walletInfo!=null){
@@ -63,7 +63,7 @@ export function getPay(wallet:string):void{
       logging.log(context.blockTimestamp)
       logging.log("Element _paymount")
       logging.log(element._payMount)
-      assert(context.blockTimestamp>=element._payMount,"Vakit gelmemiş.")
+      if(bTime>=element._payMount){
       if(!element._status){
       
         let payAccount = ContractPromiseBatch.create(context.sender);
@@ -71,6 +71,7 @@ export function getPay(wallet:string):void{
         element._status=true
      
       }
+    }
    
     });
     logging.log("Sonra")
