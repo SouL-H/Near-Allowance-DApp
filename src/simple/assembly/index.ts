@@ -1,4 +1,4 @@
-import { storage, Context, context, logging,math, u128 } from "near-sdk-as"
+import { storage, Context, context, logging,math, u128, ContractPromise, ContractPromiseBatch } from "near-sdk-as"
 import { toYocto } from "../../utils";
 import { day30, Payment, Student, studentInfo} from "./model";
 
@@ -8,7 +8,10 @@ import { day30, Payment, Student, studentInfo} from "./model";
       wallet:string,
       mount:i32,
       count:u32, 
-      ):void{
+      )
+      
+      
+      :void{
         assert(context.accountBalance >= toYocto(count), "Not enough balance");
         assert(context.attachedDeposit >= toYocto(count), "You have no balance.");
         assert(mount>0, "Mount not negative");
@@ -35,6 +38,32 @@ export function getInfo(wallet:string):Student{
   }
 
   return arrStudent;
+}
+
+
+export function setStudent(std:Student):bool{
+  if(Student.length!=0){
+    studentInfo.set(std._wallet,std);
+    return true
+  }
+  return false
+}
+export function getPay(wallet:string):bool{
+  let walletInfo =studentInfo.get(wallet);
+  const account = context.sender;
+  const payAccount = ContractPromiseBatch.create(account);
+  if(walletInfo!=null){
+    walletInfo._payCheck.forEach((element,index) => {
+    if(context.blockTimestamp>=element._payMount){
+      if(!element._status){
+        payAccount.transfer(element._count);
+        return true
+      }
+    }
+    return false
+    });
+  }
+  return false
 }
 
 // read the given key from account (contract) storage
