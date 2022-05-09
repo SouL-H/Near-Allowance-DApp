@@ -69,7 +69,7 @@ export function getPay(wallet:string):void{
     logging.log("Sonra")
     logging.log(walletInfo)
     
-    //studentInfo.set(wallet,walletInfo)
+    studentInfo.set(wallet,walletInfo)
   }
   
 }
