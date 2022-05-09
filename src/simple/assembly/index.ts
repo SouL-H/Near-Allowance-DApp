@@ -54,12 +54,15 @@ export function getInfo(wallet:string):Student{
 // }
 export function getPay(wallet:string):void{ 
   let walletInfo =studentInfo.get(wallet);
-  logging.log("Önce")
-  logging.log(walletInfo)
+
   let balance =walletInfo!._wallet;
   assert((context.sender==balance),"Wallet wrong");
   if(walletInfo!=null){
     walletInfo._payCheck.forEach((element) => {
+      logging.log("Blocktimes")
+      logging.log(context.blockTimestamp)
+      logging.log("Element _paymount")
+      logging.log(element._payMount)
       assert(context.blockTimestamp>=element._payMount,"Vakit gelmemiş.")
       if(!element._status){
       
