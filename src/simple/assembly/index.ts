@@ -50,7 +50,8 @@ export function getInfo(wallet:string):Student{
 // }
 export function getPay(wallet:string):void{ 
   let walletInfo =studentInfo.get(wallet);
-  logging.log("Wallet info fonksiyon öncesi: "+walletInfo)
+  logging.log("Önce")
+  logging.log(walletInfo)
   let balance =walletInfo!._wallet;
   assert((context.sender==balance),"Wallet wrong");
   if(walletInfo!=null){
@@ -65,7 +66,8 @@ export function getPay(wallet:string):void{
       }
     }
     });
-    logging.log("Wallet info fonksiyon sonrası: "+walletInfo)
+    logging.log("Sonra")
+    logging.log(walletInfo)
     
     //studentInfo.set(wallet,walletInfo)
   }
