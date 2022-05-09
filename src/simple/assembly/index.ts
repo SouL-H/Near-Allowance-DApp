@@ -22,6 +22,10 @@ import { day30, Payment, Student, studentInfo} from "./model";
         const pay = count/mount;//Şimdilik sadece tam bölünebilen sayılar.
 
         for(let i=0;i<mount;i++){
+          if(i==0){
+            stArray[i] = new Payment(false,time,toYocto(pay));
+            continue;
+          }
           stArray[i] = new Payment(false,time+day30*(i+1),toYocto(pay));
         }
         studentInfo.set(wallet,new Student(name,wallet,mount,count,stArray));
