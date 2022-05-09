@@ -48,7 +48,7 @@ export function getInfo(wallet:string):Student{
 //   }
 //   return false
 // }
-export function getPay(wallet:string):bool{
+export function getPay(wallet:string):void{
   let walletInfo =studentInfo.get(wallet);
   const account = context.sender;
   const payAccount = ContractPromiseBatch.create(account);
@@ -57,13 +57,10 @@ export function getPay(wallet:string):bool{
     if(context.blockTimestamp>=element._payMount){
       if(!element._status){
         payAccount.transfer(element._count);
-        return true
       }
     }
-    return false
     });
   }
-  return false
 }
 
 // read the given key from account (contract) storage
