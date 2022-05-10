@@ -9,8 +9,6 @@ echo "Step 0: Check for environment variable with contract name"
 echo ---------------------------------------------------------
 echo
 
-[ -z "$CONTRACT" ] && echo "Missing \$CONTRACT environment variable" && exit 1
-[ -z "$CONTRACT" ] || echo "Found it! \$CONTRACT is set to [ $CONTRACT ]"
 
 echo
 echo
