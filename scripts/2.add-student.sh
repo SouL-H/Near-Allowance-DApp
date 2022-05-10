@@ -10,9 +10,9 @@ echo "AccountId: $5"
 echo ---------------------------------------------------------
 echo
 
-near call $CONTRACT addStudent '{"name": "'"$1"'", "wallet": "'"$2"'","mount":"'$3'","count":"'$4'"}' --accountId $5 --amount $4
+near call $CONTRACT addStudent '{"name": "'"$1"'", "wallet": "'"$2"'","mount":'$3',"count":'$4'}' --accountId $5 --amount $4
 
-
+set -e
 echo 'Student added!'
 echo 'Thanks for your support :))'
 echo
