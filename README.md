@@ -41,7 +41,7 @@ bash ./scripts/2.add-student.sh <student-name> <student-near-wallet-adress> <pay
 
 ```
 
-Start playing after the player joins a created game:
+Allowance withdrawal from student account:
 ```
 bash ./scripts/3.get-paid.sh <student-near-wallet-adress>
 
@@ -61,7 +61,7 @@ bash ./scripts/4.student-info.sh <student-near-wallet-adress>
 
 
 
-In this project, I wanted students/scholars to receive their monthly payments by using the near protocol, thanks to the blockchain infrastructure.
+In this project, I wanted students/scholars to receive their monthly payments by using the near protocol, thanks to blockchain infrastructure.
 
 
 Thanks for checking out my project!
