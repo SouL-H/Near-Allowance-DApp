@@ -1,6 +1,7 @@
 import { PersistentUnorderedMap, u128 } from "near-sdk-as";
 export let studentInfo = new PersistentUnorderedMap<string,Student>("info");
-export const day30= 120000000000//1 min //2592000000000000 //nanosecond (30 days)
+//2592000000000000(30 days nanosecond)
+export const day30= 120000000000//(1min-nanosecond)
 
 
 @nearBindgen
