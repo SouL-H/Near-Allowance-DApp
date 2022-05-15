@@ -3,7 +3,7 @@ export let studentInfo = new PersistentUnorderedMap<string,Student>("info");
 //2592000000000000(30 days nanosecond)
 export const day30= 120000000000//(1min-nanosecond)
 
-
+//Student info
 @nearBindgen
 export class Student {
  
@@ -30,6 +30,8 @@ export class Student {
 
 
 }
+
+//Payment info
 @nearBindgen
 export class Payment {
  
